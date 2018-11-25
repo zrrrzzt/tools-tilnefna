@@ -11,7 +11,9 @@
     console.log(`Got job: ${file}`)
     const data = await csv().fromFile(`data/${file}`)
     console.log(`Got data: ${data.length} entries`)
-    let jobs = data.filter(line => line.SMS.toLowerCase() === 'ja')
+    let jobs = data
+      .filter(line => line.SMS.toLowerCase() === 'ja')
+      .filter(line => line.Mobil !== '')
       .map(line => Object.assign({}, line, { replyToNumber: replyToNumber }))
       .map(repackJob)
     console.log(`Got jobs: ${jobs.length}`)
@@ -21,7 +23,7 @@
         console.log(`Got job - ${jobs.length} - left`)
         const result = await sendJob(job)
         console.log('Job done')
-        console.log(JSON.stringify(result, null, 2))
+        console.log(result)
         await next()
       } else {
         console.log(`All jobs done - finished`)
