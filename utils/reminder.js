@@ -3,7 +3,7 @@
   const { readdir } = require('fs').promises
   const isCsv = file => file.endsWith('.csv')
   const repackJob = require('../lib/repack-reminder-job')
-  const sendJob = require('../lib/send-job')
+  const sendMessage = require('../lib/send-message')
   const files = await readdir('data')
   const file = files.filter(isCsv)[0]
   const message = `Hei :-)
@@ -26,7 +26,7 @@
       if (jobs.length > 0) {
         const job = jobs.pop()
         console.log(`Got job - ${jobs.length} - left`)
-        const result = await sendJob(job)
+        const result = await sendMessage(job)
         console.log('Job done')
         console.log(result)
         await next()
