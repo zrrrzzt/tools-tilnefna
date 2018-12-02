@@ -1,6 +1,6 @@
 {
   "name": "tools-tilnefna",
-  "description": "Various tool for tilnefna-api",
+  "description": "Various tools for tilnefna-api",
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
@@ -20,7 +20,8 @@
     "coveralls": "nyc ava && nyc report --reporter=lcov && cat coverage/lcov.info | coveralls",
     "standard-fix": "standard --fix",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
-    "start": "node index.js"
+    "start": "node index.js",
+    "reminder": "node utils/reminder.js"
   },
   "keywords": [
     "tools",
