@@ -16,7 +16,7 @@
     const data = await csv().fromFile(`data/${file}`)
     console.log(`Got data: ${data.length} entries`)
     let jobs = data
-      .filter(line => ['ja', 'r2'].includes(line.SMS.toLowerCase()))
+      .filter(line => ['r3'].includes(line.SMS.toLowerCase()))
       .filter(line => line.Status.toLowerCase() === 'ikke svart')
       .filter(line => line.Mobil !== '')
       .map(line => Object.assign({}, line, { message: message }))
