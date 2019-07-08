@@ -65,5 +65,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# local
+liste.csv
+
 # next.js build output
 .next

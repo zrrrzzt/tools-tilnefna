@@ -6,22 +6,20 @@
   const sendMessage = require('../lib/send-message')
   const files = await readdir('data')
   const file = files.filter(isCsv)[0]
-  const message = `Hei :-)
-  For en stund siden spurte vi deg om du kunne tenke deg å stå på listen for Rødt Notodden til kommunevalget 2019. Har du glemt oss?
-  Svar "Ja" på denne meldingen om du kunne tenke deg å stå på listen vår.
-  Svar "Nei" om du ikke har lyst.
-  Svar "Tja" om du vil vi skal fortelle deg mer.`
+  const generateMessage = data => {
+    return `Velkommen til årsmøte for Rødt Notodden onsdag 13. mars kl 19 - 21 på "Huset vårt", Storgata 81. Det blir servering av mat. Håper vi sees.`
+  }
   if (file) {
     console.log(`Got job: ${file}`)
     const data = await csv().fromFile(`data/${file}`)
     console.log(`Got data: ${data.length} entries`)
     let jobs = data
-      .filter(line => ['r3'].includes(line.SMS.toLowerCase()))
-      .filter(line => line.Status.toLowerCase() === 'ikke svart')
-      .filter(line => line.Mobil !== '')
-      .map(line => Object.assign({}, line, { message: message }))
+      .filter(line => line.member !== 'ja')
+      .filter(line => line.phone !== '')
+      .map(line => Object.assign({}, line, { message: generateMessage(line) }))
       .map(repackJob)
     console.log(`Got jobs: ${jobs.length}`)
+
     const next = async () => {
       if (jobs.length > 0) {
         const job = jobs.pop()
