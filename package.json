@@ -44,7 +44,7 @@
     "standard": "14.3.4"
   },
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "0.20.0",
     "csvtojson": "2.0.10"
   },
   "husky": {
