@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/zrrrzzt/tools-tilnefna#readme",
   "devDependencies": {
-    "ava": "3.13.0",
+    "ava": "3.14.0",
     "coveralls": "3.1.0",
     "husky": "4.3.4",
     "nyc": "15.1.0",
